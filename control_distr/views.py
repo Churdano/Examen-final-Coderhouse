@@ -10,4 +10,18 @@ def saludar_con_html(request):
     )
     
     return HttpResponse
+
+def listar_productos(request):
+    contexto = {
+        "productos": [
+            {"nombre" : "Destornillador", "precio" : "500"},
+        ]
+    }
+    HttpResponse = render(
+    request = request,
+    template_name = 'control_distr/lista_productos.html',
+    context = contexto,
+    )
+    
+    return HttpResponse
     

@@ -1,0 +1,15 @@
+{% extends 'control_distr/base.html' %}
+
+
+
+{% block contenido %}
+<section>
+    <div>
+      <h1>Lista de Productos</h1>
+       {% for producto in productos %}
+          <li>{{ producto.nombre }}, {{ producto.precio }}</li>
+       {% endfor %}
+      </ul>
+    </div>
+</section>
+{% endblock contenido %}
