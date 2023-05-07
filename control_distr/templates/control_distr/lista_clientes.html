@@ -4,12 +4,11 @@
 <section>
     <div>
       <h1>Lista de Clientes</h1>
-      <ul>
-      {% for producto in productos %}
-          <li>{{ producto.nombre }}, {{ producto.precio }}</li>
+      <ul>  
+      {% for cliente in clientes %}
+          <li>{{ cliente.nombre }}, {{ cliente.numero_cliente }}</li>
       {% endfor %}
-      </ul>
+      </ul>  
     </div>
 </section>
 {% endblock contenido %}
-

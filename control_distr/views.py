@@ -25,3 +25,17 @@ def listar_productos(request):
     
     return HttpResponse
     
+    
+def listar_clientes(request):
+    contexto = {
+        "clientes": [
+            {"nombre" : "Pepe", "numero_cliente" : "1"},
+        ]
+    }
+    HttpResponse = render(
+    request = request,
+    template_name = 'control_distr/lista_clientes.html',
+    context = contexto,
+    )
+    
+    return HttpResponse
