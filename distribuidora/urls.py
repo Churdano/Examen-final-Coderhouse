@@ -20,7 +20,7 @@ from control_distr.views import saludar_con_html
 
 
 urlpatterns = [
+    path('', saludar_con_html, name='saludo'),
     path('admin/', admin.site.urls),
-    path('saludo-html/', saludar_con_html),
     path('lista/', include("control_distr.urls")),
 ]

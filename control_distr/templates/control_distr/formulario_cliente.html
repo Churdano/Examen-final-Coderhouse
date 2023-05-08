@@ -1,0 +1,12 @@
+{% extends "control_distr/base.html" %}
+
+{% block contenido %}
+<form action="{% url 'crear_clientes' %}" method="post">
+  {% csrf_token %}
+  <p>Nombre del Cliente</p>
+  <input type="text" name="nombre">
+  <p>Numero de DNI</p>
+  <input type="number" name="dni">
+  <input type="submit" value="Enviar">
+</form>
+{% endblock contenido %}

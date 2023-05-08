@@ -1,26 +1,26 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from control_distr.models import productos, clientes
 
 def saludar_con_html(request):
-    contexto = {}
+    contexto = {
+        'saludo': 'Bienvenido a distribuidora LG!',
+    }
     HttpResponse = render(
-    request = request,
-    template_name = 'control_distr/base.html',
-    context = contexto,
+        request=request,
+        template_name='control_distr/inicio.html',
+        context=contexto,
     )
     
     return HttpResponse
 
 def listar_productos(request):
     contexto = {
-        "productos": [
-            {"nombre" : "Destornillador", "precio" : "500"},
-        ]
+        "productos": productos.objects.all(),
     }
     HttpResponse = render(
-    request = request,
-    template_name = 'control_distr/lista_productos.html',
-    context = contexto,
+        request=request,
+        template_name='control_distr/lista_productos.html',
+        context=contexto,
     )
     
     return HttpResponse
@@ -28,14 +28,22 @@ def listar_productos(request):
     
 def listar_clientes(request):
     contexto = {
-        "clientes": [
-            {"nombre" : "Pepe", "numero_cliente" : "1"},
-        ]
+        "clientes": clientes.objects.all(),
     }
     HttpResponse = render(
-    request = request,
-    template_name = 'control_distr/lista_clientes.html',
-    context = contexto,
+        request=request,
+        template_name='control_distr/lista_clientes.html',
+        context=contexto,
+    )
+    
+    return HttpResponse
+
+def crear_cliente(request):
+    contexto = {}
+    HttpResponse = render(
+        request=request,
+        template_name='control_distr/formulario_cliente.html',
+        context=contexto,
     )
     
     return HttpResponse
