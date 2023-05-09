@@ -3,18 +3,25 @@
 {% block contenido %}
 <form action="{% url 'crear_clientes' %}" method="post">
   {% csrf_token %}
+  {{ form.errors }}  <!-- Muestra los errores generales del formulario -->
   <p>Nombre del Cliente</p>
-  <input type="text" name="nombre">
+  {{ form.nombre }}
+  {{ form.nombre.errors }}  <!-- Muestra los errores específicos del campo 'nombre' -->
   <p>Apellido</p>
-  <input type="text" name="apellido">
+  {{ form.apellido }}
+  {{ form.apellido.errors }}  <!-- Muestra los errores específicos del campo 'apellido' -->
   <p>Numero de DNI</p>
-  <input type="number" name="numero_cliente">
+  {{ form.numero_cliente }}
+  {{ form.numero_cliente.errors }}  <!-- Muestra los errores específicos del campo 'numero_cliente' -->
   <p>Calle</p>
-  <input type="text" name="calle">
+  {{ form.calle }}
+  {{ form.calle.errors }}  <!-- Muestra los errores específicos del campo 'calle' -->
   <p>Altura</p>
-  <input type="number" name="calle_altura">
+  {{ form.calle_altura }}
+  {{ form.calle_altura.errors }}  <!-- Muestra los errores específicos del campo 'calle_altura' -->
   <p>Teléfono</p>
-  <input type="number" name="telefono">
+  {{ form.telefono }}
+  {{ form.telefono.errors }}  <!-- Muestra los errores específicos del campo 'telefono' -->
   <input type="submit" value="Enviar">
 </form>
 {% endblock contenido %}
