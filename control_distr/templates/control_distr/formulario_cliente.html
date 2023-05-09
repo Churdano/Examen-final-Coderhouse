@@ -5,8 +5,16 @@
   {% csrf_token %}
   <p>Nombre del Cliente</p>
   <input type="text" name="nombre">
+  <p>Apellido</p>
+  <input type="text" name="apellido">
   <p>Numero de DNI</p>
-  <input type="number" name="dni">
+  <input type="number" name="numero_cliente">
+  <p>Calle</p>
+  <input type="text" name="calle">
+  <p>Altura</p>
+  <input type="number" name="calle_altura">
+  <p>Teléfono</p>
+  <input type="number" name="telefono">
   <input type="submit" value="Enviar">
 </form>
 {% endblock contenido %}
