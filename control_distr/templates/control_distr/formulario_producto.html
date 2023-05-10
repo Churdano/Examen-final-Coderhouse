@@ -1,0 +1,15 @@
+{% extends "control_distr/base.html" %}
+
+{% block contenido %}
+<form action="{% url 'crear_producto' %}" method="post">
+  {% csrf_token %}
+  {{ form.errors }}  
+  {{ form.nombre }}
+  {{ form.nombre.errors }} 
+  <p>Nombre del Producto</p>
+  {{ form.precio }}
+  {{ form.precio.errors }} 
+  <p>Precio</p>
+  <input type="submit" value="Enviar">
+</form>
+{% endblock contenido %}

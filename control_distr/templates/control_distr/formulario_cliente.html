@@ -3,25 +3,25 @@
 {% block contenido %}
 <form action="{% url 'crear_clientes' %}" method="post">
   {% csrf_token %}
-  {{ form.errors }}  <!-- Muestra los errores generales del formulario -->
-  <p>Nombre del Cliente</p>
+  {{ form.errors }}  
   {{ form.nombre }}
-  {{ form.nombre.errors }}  <!-- Muestra los errores específicos del campo 'nombre' -->
-  <p>Apellido</p>
+  {{ form.nombre.errors }} 
+  <p>Nombre del Cliente</p>
   {{ form.apellido }}
-  {{ form.apellido.errors }}  <!-- Muestra los errores específicos del campo 'apellido' -->
-  <p>Numero de DNI</p>
+  {{ form.apellido.errors }} 
+  <p>Apellido</p>
   {{ form.numero_cliente }}
-  {{ form.numero_cliente.errors }}  <!-- Muestra los errores específicos del campo 'numero_cliente' -->
-  <p>Calle</p>
+  {{ form.numero_cliente.errors }} 
+  <p>Numero de DNI</p>
   {{ form.calle }}
-  {{ form.calle.errors }}  <!-- Muestra los errores específicos del campo 'calle' -->
-  <p>Altura</p>
+  {{ form.calle.errors }}  
+  <p>Calle</p>
   {{ form.calle_altura }}
-  {{ form.calle_altura.errors }}  <!-- Muestra los errores específicos del campo 'calle_altura' -->
-  <p>Teléfono</p>
+  {{ form.calle_altura.errors }}  
+  <p>Altura</p>
   {{ form.telefono }}
-  {{ form.telefono.errors }}  <!-- Muestra los errores específicos del campo 'telefono' -->
+  {{ form.telefono.errors }} 
+  <p>Teléfono</p>
   <input type="submit" value="Enviar">
 </form>
 {% endblock contenido %}

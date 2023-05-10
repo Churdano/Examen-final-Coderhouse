@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from control_distr.models import productos, clientes
-from .forms import ClienteForm
+from .forms import ProductoForm, ClienteForm
 
 
 def saludar_con_html(request):
@@ -59,3 +59,33 @@ def buscar_clientes(request):
             context=contexto,
         )
         return http_response
+    
+def crear_producto(request):
+    if request.method == "POST":
+        form = ProductoForm(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data["nombre"]
+            precio = form.cleaned_data["precio"]
+            resultado = productos(nombre=nombre, precio=precio)
+            resultado.save()
+            url_exitosa = reverse('lista_productos')
+            return redirect(url_exitosa)
+    else:
+        form = ProductoForm()
+    
+    contexto = {
+        'form': form
+    }
+    return render(request, 'control_distr/formulario_producto.html', contexto)
+
+
+def buscar_producto(request):
+    if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        resultados = productos.objects.filter(nombre__contains=busqueda)
+        contexto = {
+            "productos": resultados,
+        }
+        return render(request, 'control_distr/lista_productos.html', contexto)
+
