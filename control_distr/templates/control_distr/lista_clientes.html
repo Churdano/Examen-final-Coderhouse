@@ -4,7 +4,15 @@
 <section>
     <div>
       <a href="{% url 'crear_clientes' %}">Ingresar Cliente</a>
+      <br>
       <h1>Lista de Clientes</h1>
+      <br>
+      <form action="{% url 'buscar_clientes' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="busqueda">
+        <input type="submit" value="Buscar por DNI">
+      </form>
+      <br>
       <ul>  
       {% for cliente in clientes %}
           <li>{{ cliente.nombre }}, {{ cliente.numero_cliente }}</li>

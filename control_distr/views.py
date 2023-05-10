@@ -45,3 +45,17 @@ def crear_cliente(request):
     }
     return render(request, 'control_distr/formulario_cliente.html', contexto)
 
+def buscar_clientes(request):
+    if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        resultados = clientes.objects.filter(numero_cliente__contains=busqueda)
+        contexto = {
+            "clientes": resultados,
+        }
+        http_response = render(
+            request=request,
+            template_name='control_distr/lista_clientes.html',
+            context=contexto,
+        )
+        return http_response
