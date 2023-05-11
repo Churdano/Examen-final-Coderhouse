@@ -1,4 +1,4 @@
-# ProyectoCoder
+# Distribuidora LG
 
 ## Instrucciones instalar proyecto en local
 + Crea una carpeta contenedora madre
@@ -21,3 +21,4 @@ python manage.py createsuperuser
 ```
 127.0.0.1:8000/admin
 ```
+### Es una pagina para una distribuidora de ferreterias. Contiene un panel de inicio con un saludo, un panel para ver los productos, buscar, o crear. Un panel para ingresar clientes nuevos, o buscarlos en la BD. Y tambien un panel para vendedores, en donde se podran ingresar nuevos vendedores o buscarlos por apellido.

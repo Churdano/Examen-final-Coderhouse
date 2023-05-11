@@ -1,7 +1,7 @@
 {% extends "control_distr/base.html" %}
 
 {% block contenido %}
-<form action="{% url 'crear_clientes' %}" method="post">
+<form action="{% url 'crear_cliente' %}" method="post">
   {% csrf_token %}
   {{ form.errors }}  
   {{ form.nombre }}
