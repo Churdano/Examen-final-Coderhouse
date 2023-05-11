@@ -11,3 +11,7 @@ class ClienteForm(forms.Form):
 class ProductoForm(forms.Form):
     nombre = forms.CharField(max_length=300)
     precio = forms.IntegerField()
+    
+class VendedorForm(forms.Form):
+    nombre = forms.CharField(max_length=200)
+    apellido = forms.CharField(max_length=200)

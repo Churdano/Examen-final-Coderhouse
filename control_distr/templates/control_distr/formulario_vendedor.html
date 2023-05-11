@@ -1,0 +1,15 @@
+{% extends "control_distr/base.html" %}
+
+{% block contenido %}
+<form action="{% url 'crear_vendedor' %}" method="post">
+  {% csrf_token %}
+  {{ form.errors }}  
+  {{ form.nombre }}
+  {{ form.nombre.errors }} 
+  <p>Nombre</p>
+  {{ form.apellido }}
+  {{ form.apellido.errors }} 
+  <p>Apellido</p>
+  <input type="submit" value="Enviar">
+</form>
+{% endblock contenido %}

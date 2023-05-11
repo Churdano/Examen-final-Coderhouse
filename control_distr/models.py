@@ -18,8 +18,3 @@ class productos(models.Model):
 class vendedor(models.Model):
     nombre = models.CharField(max_length=200)
     apellido = models.CharField(max_length=200)
-    
-    
-class pedidos(models.Model):
-    fecha_pedido = models.DateField()
-    aprobado = models.BooleanField(default=False)

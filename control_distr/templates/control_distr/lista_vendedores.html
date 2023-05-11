@@ -1,0 +1,23 @@
+{% extends 'control_distr/base.html' %}
+
+{% block contenido %}
+<section>
+    <div>
+      <a href="{% url 'crear_vendedor' %}">Ingresar Vendedor</a>
+      <br>
+      <h1>Lista de Vendedores</h1>
+      <br>
+      <form action="{% url 'buscar_vendedor' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="busqueda">
+        <input type="submit" value="Buscar por apellido">
+      </form>
+      <br>
+      <ul>
+      {% for vendedor in vendedores %}
+          <li>{{ vendedor.nombre }}, {{ vendedor.apellido }}</li>
+      {% endfor %}
+      </ul>
+    </div>
+</section>
+{% endblock contenido %}
