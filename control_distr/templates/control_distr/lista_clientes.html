@@ -13,11 +13,22 @@
         <input type="submit" value="Buscar por DNI">
       </form>
       <br>
-      <ul>  
-      {% for cliente in clientes %}
-          <li>{{ cliente.nombre }}, {{ cliente.numero_cliente }}</li>
-      {% endfor %}
-      </ul>  
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Nombre</th>
+            <th>DNI</th>
+          </tr>
+          {% for cliente in clientes %}
+          <tr>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.numero_cliente }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+     
     </div>
 </section>
 {% endblock contenido %}

@@ -13,11 +13,22 @@
         <input type="submit" value="Buscar por nombre">
       </form>
       <br>
-      <ul>
-      {% for producto in productos %}
-          <li>{{ producto.nombre }}, {{ producto.precio }}</li>
-      {% endfor %}
-      </ul>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Nombre</th>
+            <th>Precio($)</th>
+          </tr>
+          {% for producto in productos %}
+          <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.precio }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+   
     </div>
 </section>
 {% endblock contenido %}
