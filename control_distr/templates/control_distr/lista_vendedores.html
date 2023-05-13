@@ -19,11 +19,19 @@
           <tr>
             <th>Nombre</th>
             <th>Apellido</th>
+            <th>Eliminar</th>
           </tr>
           {% for vendedor in vendedores %}
           <tr>
             <td>{{ vendedor.nombre }}</td>
             <td>{{ vendedor.apellido }}</td>
+            <td>
+              <form action="{% url 'eliminar_vendedor' vendedor.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="eliminar"/>
+              </form
+            </td>
+       
           </tr>
           {% endfor %}
         </tbody>

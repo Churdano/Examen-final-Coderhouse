@@ -56,6 +56,14 @@ def buscar_cliente(request):
         )
         return http_response
 
+def eliminar_cliente(request, id):
+   cliente = clientes.objects.get(id=id)
+   if request.method == "POST":
+       cliente.delete()
+       url_exitosa = reverse('lista_clientes')
+       return redirect(url_exitosa)
+
+
 #producto
 def crear_producto(request):
     if request.method == "POST":
@@ -90,6 +98,15 @@ def buscar_producto(request):
             "productos": resultados,
         }
         return render(request, 'control_distr/lista_productos.html', contexto)
+
+def eliminar_producto(request, id):
+   producto = productos.objects.get(id=id)
+   if request.method == "POST":
+       producto.delete()
+       url_exitosa = reverse('lista_productos')
+       return redirect(url_exitosa)
+
+
 
 #vendedor    
 def listar_vendedores(request):
@@ -126,3 +143,9 @@ def buscar_vendedor(request):
         }
         return render(request, 'control_distr/lista_vendedores.html', contexto)
 
+def eliminar_vendedor(request, id):
+   vendedores = vendedor.objects.get(id=id)
+   if request.method == "POST":
+       vendedores.delete()
+       url_exitosa = reverse('lista_vendedores')
+       return redirect(url_exitosa)
