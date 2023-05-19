@@ -62,6 +62,38 @@ def eliminar_cliente(request, id):
        cliente.delete()
        url_exitosa = reverse('lista_clientes')
        return redirect(url_exitosa)
+   
+def editar_cliente(request, id):
+   cliente = clientes.objects.get(id=id)
+   if request.method == "POST":
+       formulario = ClienteForm(request.POST)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data
+           cliente.nombre = data['nombre']
+           cliente.apellido = data['apellido']
+           cliente.numero_cliente = data['numero_cliente']
+           cliente.calle = data['calle']
+           cliente.calle_altura = data['calle_altura']
+           cliente.telefono = data['telefono']
+           cliente.save()
+           url_exitosa = reverse('lista_clientes')
+           return redirect(url_exitosa)
+   else:  # GET
+       inicial = {
+           'nombre': cliente.nombre,
+           'apellido': cliente.apellido,
+           'numero_cliente': cliente.numero_cliente,
+           'calle': cliente.calle,
+           'calle_altura': cliente.calle_altura,
+           'telefono': cliente.telefono,
+       }
+       formulario = ClienteForm(initial=inicial)
+   return render(
+        request=request,
+        template_name='control_distr/formulario_cliente.html',
+        context={'form': formulario},
+   )
 
 
 #producto

@@ -17,12 +17,14 @@
       <table class="table">
         <tbody>
           <tr>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Precio($)</th>
             <th>Eliminar</th>
           </tr>
           {% for producto in productos %}
           <tr>
+            <td>{{ producto.id }}</td>
             <td>{{ producto.nombre }}</td>
             <td>{{ producto.precio }}</td>
             <td>

@@ -17,14 +17,20 @@
       <table class="table">
         <tbody>
           <tr>
+            <th>ID</th>
             <th>Nombre</th>
             <th>DNI</th>
+            <th>Editar</th>
             <th>Eliminar</th>
           </tr>
           {% for cliente in clientes %}
           <tr>
+            <td>{{ cliente.id }}</td>
             <td>{{ cliente.nombre }}</td>
             <td>{{ cliente.numero_cliente }}</td>
+            <td>
+              <a href="{% url 'editar_cliente' cliente.id %}">Editar</a>
+            </td>
             <td>
               <form action="{% url 'eliminar_cliente' cliente.id %}" method="post">
                 {% csrf_token %}

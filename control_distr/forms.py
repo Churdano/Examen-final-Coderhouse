@@ -1,17 +1,15 @@
 from django import forms
+from .models import clientes
 
-class ClienteForm(forms.Form):
-    nombre = forms.CharField(max_length=100)
-    apellido = forms.CharField(max_length=100)
-    numero_cliente = forms.IntegerField()
-    calle = forms.CharField(max_length=100)
-    calle_altura = forms.IntegerField()
-    telefono = forms.IntegerField()
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = clientes
+        fields = '__all__'
     
-class ProductoForm(forms.Form):
+class ProductoForm(forms.ModelForm):
     nombre = forms.CharField(max_length=300)
     precio = forms.IntegerField()
     
-class VendedorForm(forms.Form):
+class VendedorForm(forms.ModelForm):
     nombre = forms.CharField(max_length=200)
     apellido = forms.CharField(max_length=200)

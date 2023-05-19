@@ -17,12 +17,14 @@
       <table class="table">
         <tbody>
           <tr>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Eliminar</th>
           </tr>
           {% for vendedor in vendedores %}
           <tr>
+            <td>{{ vendedor.id }}</td>
             <td>{{ vendedor.nombre }}</td>
             <td>{{ vendedor.apellido }}</td>
             <td>
