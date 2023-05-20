@@ -138,6 +138,25 @@ def eliminar_producto(request, id):
        url_exitosa = reverse('lista_productos')
        return redirect(url_exitosa)
 
+def editar_producto(request, id):
+   producto = productos.objects.get(id=id)
+   if request.method == "POST":
+       formulario = ProductoForm(request.POST, instance=producto)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data
+           producto.nombre = data['nombre']
+           producto.precio = data['precio']
+           producto.save()
+           url_exitosa = reverse('lista_productos')
+           return redirect(url_exitosa)
+   else:  # GET
+       formulario = ProductoForm(instance=producto)
+   return render(
+        request=request,
+        template_name='control_distr/formulario_producto.html',
+        context={'form': formulario},
+   )
 
 
 #vendedor    

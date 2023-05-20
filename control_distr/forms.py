@@ -1,5 +1,5 @@
 from django import forms
-from .models import clientes
+from .models import clientes, productos
 
 class ClienteForm(forms.ModelForm):
     class Meta:
@@ -7,8 +7,9 @@ class ClienteForm(forms.ModelForm):
         fields = '__all__'
     
 class ProductoForm(forms.ModelForm):
-    nombre = forms.CharField(max_length=300)
-    precio = forms.IntegerField()
+    class Meta:
+        model = productos
+        fields = '__all__'
     
 class VendedorForm(forms.ModelForm):
     nombre = forms.CharField(max_length=200)
