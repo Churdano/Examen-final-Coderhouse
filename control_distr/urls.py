@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.urls import path
 from control_distr.views import  crear_cliente, buscar_cliente, buscar_producto, eliminar_producto, editar_producto
-from control_distr.views import listar_productos, listar_clientes, listar_vendedores, eliminar_vendedor
+from control_distr.views import listar_productos, listar_clientes, listar_vendedores, eliminar_vendedor, editar_vendedor
 from control_distr.views import crear_producto, buscar_vendedor, crear_vendedor, eliminar_cliente, editar_cliente
 
 
@@ -35,6 +35,7 @@ urlpatterns = [
     
     path('buscar-vendedor/', buscar_vendedor, name='buscar_vendedor'),
     path('crear-vendedor/', crear_vendedor, name='crear_vendedor'),
+    path('editar-vendedor/<int:id>/', editar_vendedor, name="editar_vendedor"),
     
     path('eliminar-cliente/<int:id>/', eliminar_cliente, name="eliminar_cliente"),
     path('eliminar-producto/<int:id>/', eliminar_producto, name="eliminar_producto"),

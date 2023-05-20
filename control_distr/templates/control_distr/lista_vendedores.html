@@ -20,6 +20,7 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Apellido</th>
+            <th>Editar</th>
             <th>Eliminar</th>
           </tr>
           {% for vendedor in vendedores %}
@@ -27,6 +28,9 @@
             <td>{{ vendedor.id }}</td>
             <td>{{ vendedor.nombre }}</td>
             <td>{{ vendedor.apellido }}</td>
+            <td>
+              <a href="{% url 'editar_vendedor' vendedor.id %}">Editar</a>
+            </td>
             <td>
               <form action="{% url 'eliminar_vendedor' vendedor.id %}" method="post">
                 {% csrf_token %}

@@ -200,3 +200,23 @@ def eliminar_vendedor(request, id):
        vendedores.delete()
        url_exitosa = reverse('lista_vendedores')
        return redirect(url_exitosa)
+
+def editar_vendedor(request, id):
+   vendedores = vendedor.objects.get(id=id)
+   if request.method == "POST":
+       formulario = VendedorForm(request.POST, instance=vendedores)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data
+           vendedores.nombre = data['nombre']
+           vendedores.apellido = data['apellido']
+           vendedores.save()
+           url_exitosa = reverse('lista_vendedores')
+           return redirect(url_exitosa)
+   else:  # GET
+       formulario = VendedorForm(instance=vendedores)
+   return render(
+        request=request,
+        template_name='control_distr/formulario_vendedor.html',
+        context={'form': formulario},
+   )
