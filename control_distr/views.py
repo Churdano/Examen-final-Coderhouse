@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from control_distr.models import productos, clientes, vendedor
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .forms import ProductoForm, ClienteForm, VendedorForm
 
 
@@ -13,13 +14,13 @@ def saludar_con_html(request):
 
 
 #cliente
-def listar_clientes(request):
+""" def listar_clientes(request):
     contexto = {
-        "clientes": clientes.objects.all(),
+       "clientes": clientes.objects.all(),
     }
-    return render(request, 'control_distr/lista_clientes.html', contexto)
+    return render(request, 'control_distr/lista_clientes.html', contexto) """
 
-def crear_cliente(request):
+""" def crear_cliente(request):
     if request.method == "POST":
         form = ClienteForm(request.POST)
         if form.is_valid():
@@ -39,9 +40,9 @@ def crear_cliente(request):
     contexto = {
         'form': form
     }
-    return render(request, 'control_distr/formulario_cliente.html', contexto)
+    return render(request, 'control_distr/formulario_cliente.html', contexto) """
 
-def buscar_cliente(request):
+""" def buscar_cliente(request):
     if request.method == "POST":
         data = request.POST
         busqueda = data["busqueda"]
@@ -55,15 +56,16 @@ def buscar_cliente(request):
             context=contexto,
         )
         return http_response
-
-def eliminar_cliente(request, id):
+ """
+ 
+""" def eliminar_cliente(request, id):
    cliente = clientes.objects.get(id=id)
    if request.method == "POST":
        cliente.delete()
        url_exitosa = reverse('lista_clientes')
-       return redirect(url_exitosa)
+       return redirect(url_exitosa) """
    
-def editar_cliente(request, id):
+""" def editar_cliente(request, id):
    cliente = clientes.objects.get(id=id)
    if request.method == "POST":
        formulario = ClienteForm(request.POST)
@@ -93,7 +95,32 @@ def editar_cliente(request, id):
         request=request,
         template_name='control_distr/formulario_cliente.html',
         context={'form': formulario},
-   )
+   ) """
+
+class ClienteListView(ListView):
+   model = clientes
+   template_name = 'control_distr/lista_clientes.html'
+   
+class ClienteCreateView(CreateView):
+   model = clientes
+   fields = ('nombre', 'apellido', 'calle', 'calle_altura', 'telefono', 'numero_cliente')
+   success_url = reverse_lazy('lista_clientes')
+   
+class ClienteDetailView(DetailView):
+   model = clientes
+   success_url = reverse_lazy('lista_clientes')
+
+class ClienteUpdateView(UpdateView):
+   model = clientes
+   fields = ('nombre', 'apellido', 'calle', 'calle_altura', 'telefono', 'numero_cliente')
+   success_url = reverse_lazy('lista_clientes')
+
+class ClienteDeleteView(DeleteView):
+   model = clientes
+   success_url = reverse_lazy('lista_clientes')
+
+
+
 
 
 #producto

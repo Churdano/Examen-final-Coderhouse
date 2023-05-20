@@ -1,0 +1,15 @@
+{% extends "control_distr/base.html" %}
+
+{% block contenido %}
+
+<form method="post">
+ {% csrf_token %}
+ {{ form.as_p }}
+ <p>¿Estas seguro deseas eliminar a {{object.apellido}}?</p>
+ <input type="submit" value="Eliminar" />
+</form>
+
+<br>
+<a href="{% url 'lista_clientes' %}">Volver lista</a>
+
+{% endblock contenido %}
