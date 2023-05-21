@@ -27,6 +27,7 @@ def registro(request):
 
 
 def login_view(request):
+   next_url = request.GET.get('next')
    if request.method == "POST":
        form = AuthenticationForm(request, data=request.POST)
 
@@ -37,6 +38,8 @@ def login_view(request):
            user = authenticate(username=usuario, password=password)
            if user:
                login(request=request, user=user)
+               if next_url:
+                   return redirect(next_url)
                url_exitosa = reverse('saludo')
                return redirect(url_exitosa)
    else:  # GET

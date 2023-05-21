@@ -3,7 +3,8 @@ from django.urls import reverse, reverse_lazy
 from control_distr.models import productos, clientes, vendedor
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .forms import ProductoForm, ClienteForm, VendedorForm
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 def saludar_con_html(request):
     contexto = {
@@ -97,25 +98,25 @@ def saludar_con_html(request):
         context={'form': formulario},
    ) """
 
-class ClienteListView(ListView):
-   model = clientes
-   template_name = 'control_distr/lista_clientes.html'
+class ClienteListView(LoginRequiredMixin, ListView):
+    model = clientes
+    template_name = 'control_distr/lista_clientes.html'
    
-class ClienteCreateView(CreateView):
+class ClienteCreateView(LoginRequiredMixin, CreateView):
    model = clientes
    fields = ('nombre', 'apellido', 'calle', 'calle_altura', 'telefono', 'numero_cliente')
    success_url = reverse_lazy('lista_clientes')
    
-class ClienteDetailView(DetailView):
+class ClienteDetailView(LoginRequiredMixin, DetailView):
    model = clientes
    success_url = reverse_lazy('lista_clientes')
 
-class ClienteUpdateView(UpdateView):
+class ClienteUpdateView(LoginRequiredMixin, UpdateView):
    model = clientes
    fields = ('nombre', 'apellido', 'calle', 'calle_altura', 'telefono', 'numero_cliente')
    success_url = reverse_lazy('lista_clientes')
 
-class ClienteDeleteView(DeleteView):
+class ClienteDeleteView(LoginRequiredMixin, DeleteView):
    model = clientes
    success_url = reverse_lazy('lista_clientes')
 
@@ -124,13 +125,15 @@ class ClienteDeleteView(DeleteView):
 
 
 #producto
+@login_required
 def crear_producto(request):
     if request.method == "POST":
         form = ProductoForm(request.POST)
         if form.is_valid():
             nombre = form.cleaned_data["nombre"]
             precio = form.cleaned_data["precio"]
-            resultado = productos(nombre=nombre, precio=precio)
+            creador = request.user
+            resultado = productos(nombre=nombre, precio=precio, creador=creador)
             resultado.save()
             url_exitosa = reverse('lista_productos')
             return redirect(url_exitosa)
@@ -158,6 +161,7 @@ def buscar_producto(request):
         }
         return render(request, 'control_distr/lista_productos.html', contexto)
 
+@login_required
 def eliminar_producto(request, id):
    producto = productos.objects.get(id=id)
    if request.method == "POST":
@@ -165,6 +169,7 @@ def eliminar_producto(request, id):
        url_exitosa = reverse('lista_productos')
        return redirect(url_exitosa)
 
+@login_required
 def editar_producto(request, id):
    producto = productos.objects.get(id=id)
    if request.method == "POST":
@@ -186,20 +191,23 @@ def editar_producto(request, id):
    )
 
 
-#vendedor    
+#vendedor   
+@login_required 
 def listar_vendedores(request):
     contexto = {
         "vendedores": vendedor.objects.all(),
     }
     return render(request, 'control_distr/lista_vendedores.html', contexto)
 
+@login_required
 def crear_vendedor(request):
     if request.method == "POST":
         form = VendedorForm(request.POST)
         if form.is_valid():
             nombre = form.cleaned_data["nombre"]
             apellido = form.cleaned_data["apellido"]
-            resultado = vendedor(nombre=nombre, apellido=apellido)
+            creador = request.user
+            resultado = vendedor(nombre=nombre, apellido=apellido, creador=creador)
             resultado.save()
             url_exitosa = reverse('lista_vendedores')
             return redirect(url_exitosa)
@@ -211,6 +219,7 @@ def crear_vendedor(request):
     }
     return render(request, 'control_distr/formulario_vendedor.html', contexto)
 
+@login_required
 def buscar_vendedor(request):
     if request.method == "POST":
         data = request.POST
@@ -221,6 +230,7 @@ def buscar_vendedor(request):
         }
         return render(request, 'control_distr/lista_vendedores.html', contexto)
 
+@login_required
 def eliminar_vendedor(request, id):
    vendedores = vendedor.objects.get(id=id)
    if request.method == "POST":
@@ -228,6 +238,7 @@ def eliminar_vendedor(request, id):
        url_exitosa = reverse('lista_vendedores')
        return redirect(url_exitosa)
 
+@login_required
 def editar_vendedor(request, id):
    vendedores = vendedor.objects.get(id=id)
    if request.method == "POST":
