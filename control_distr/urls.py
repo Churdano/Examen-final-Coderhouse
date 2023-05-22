@@ -15,19 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from control_distr.views import  crear_cliente, buscar_cliente, buscar_producto, eliminar_producto, editar_producto
-from control_distr.views import listar_productos, listar_clientes, listar_vendedores, eliminar_vendedor, editar_vendedor
-from control_distr.views import crear_producto, buscar_vendedor, crear_vendedor, eliminar_cliente, editar_cliente
+from control_distr.views import buscar_producto, eliminar_producto, editar_producto
+from control_distr.views import listar_productos, listar_vendedores, eliminar_vendedor, editar_vendedor
+from control_distr.views import crear_producto, buscar_vendedor, crear_vendedor
+from control_distr.views import ClienteCreateView, ClienteDeleteView, ClienteDetailView, ClienteListView, ClienteUpdateView
 
 
 urlpatterns = [
     path('productos/', listar_productos, name='lista_productos'),
-    path('clientes/', listar_clientes, name='lista_clientes'),
+    #path('clientes/', listar_clientes, name='lista_clientes'),
     path('vendedores/', listar_vendedores, name='lista_vendedores'),
     
-    path('crear-cliente/', crear_cliente, name='crear_cliente'),
-    path('buscar-cliente/', buscar_cliente, name='buscar_cliente'),
-    path('editar-cliente/<int:id>/', editar_cliente, name="editar_cliente"),
+    #path('crear-cliente/', crear_cliente, name='crear_cliente'),
+    #path('buscar-cliente/', buscar_cliente, name='buscar_cliente'),
+    #path('editar-cliente/<int:id>/', editar_cliente, name="editar_cliente"),
     
     path('buscar-producto/', buscar_producto, name='buscar_producto'),
     path('crear-producto/', crear_producto, name='crear_producto'),
@@ -37,8 +38,15 @@ urlpatterns = [
     path('crear-vendedor/', crear_vendedor, name='crear_vendedor'),
     path('editar-vendedor/<int:id>/', editar_vendedor, name="editar_vendedor"),
     
-    path('eliminar-cliente/<int:id>/', eliminar_cliente, name="eliminar_cliente"),
+    #path('eliminar-cliente/<int:id>/', eliminar_cliente, name="eliminar_cliente"),
     path('eliminar-producto/<int:id>/', eliminar_producto, name="eliminar_producto"),
     path('eliminar-vendedor/<int:id>/', eliminar_vendedor, name="eliminar_vendedor"),
+    
+    #cliente
+    path("clientes/", ClienteListView.as_view(), name="lista_clientes"),
+    path('clientes/<int:pk>/', ClienteDetailView.as_view(), name="ver_cliente"),
+    path('crear-cliente/', ClienteCreateView.as_view(), name="crear_cliente"),
+    path('editar-cliente/<int:pk>/', ClienteUpdateView.as_view(), name="editar_cliente"),
+    path('eliminar-cliente/<int:pk>/', ClienteDeleteView.as_view(), name="eliminar_cliente")
 
 ]

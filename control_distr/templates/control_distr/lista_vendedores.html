@@ -20,8 +20,8 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
+            <th></th>
+            <th></th>
           </tr>
           {% for vendedor in vendedores %}
           <tr>
@@ -32,10 +32,12 @@
               <a href="{% url 'editar_vendedor' vendedor.id %}">Editar</a>
             </td>
             <td>
+              {% if user == vendedor.creador %}
               <form action="{% url 'eliminar_vendedor' vendedor.id %}" method="post">
                 {% csrf_token %}
                 <input type="submit" value="eliminar"/>
-              </form
+              </form>
+              {% endif %}
             </td>
        
           </tr>
