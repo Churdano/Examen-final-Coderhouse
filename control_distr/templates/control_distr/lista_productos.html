@@ -20,7 +20,7 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Precio($)</th>
-            <th></th>
+            <th>Editar</th>
             <th></th>
           </tr>
           {% for producto in productos %}
@@ -29,7 +29,11 @@
             <td>{{ producto.nombre }}</td>
             <td>{{ producto.precio }}</td>
             <td>
-              <a href="{% url 'editar_producto' producto.id %}">Editar</a>
+              {% if user == producto.creador %}
+              <a href="{% url 'editar_producto' producto.id %}">
+                <i class="bi bi-pencil"></i>
+              </a>
+              {% endif %}
             </td>
             <td>
               {% if user == producto.creador %}

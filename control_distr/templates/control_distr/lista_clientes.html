@@ -14,8 +14,8 @@
          <th>Nombre</th>
          <th>Apellido</th>
          <th>Numero de Cliente</th>
-         <td></td>
-         <td></td>
+         <td>Ver</td>
+         <td>Editar</td>
        </tr>
        {% for cliente in object_list %}
        <tr>
@@ -24,10 +24,14 @@
          <td>{{ cliente.apellido }}</td>
          <td>{{ cliente.numero_cliente }}</td>
          <td>
-           <a href="{% url 'ver_cliente' cliente.id %}">Ver</a>
+           <a href="{% url 'ver_cliente' cliente.id %}">
+            <i class="bi bi-eye"></i>
+           </a>
          </td>
          <td>
-           <a href="{% url 'editar_cliente' cliente.id %}">Editar</a>
+           <a href="{% url 'editar_cliente' cliente.id %}">
+            <i class="bi bi-pencil"></i>
+           </a>
          </td>
          <td>
            <a href="{% url 'eliminar_cliente' cliente.id %}">
