@@ -1,0 +1,38 @@
+{% extends "control_distr/base.html" %}
+
+{% block contenido %}
+<div class="container">
+  <h1>{{ articulo.titulo }}</h1>
+  <h2>{{ articulo.subtitulo }}</h2>
+  <p>Creado por: {{ articulo.autor }}</p>
+  <p>Fecha de creación: {{ articulo.fecha }}</p>
+  <div class="vista-previa">{{ articulo.cuerpo }}</div>
+
+  {% if articulo.imagen %}
+    <img src="{{ articulo.imagen.url }}" alt="Imagen del artículo" class="imagen-articulo">
+  {% endif %}
+</div>
+
+<style>
+.imagen-articulo {
+  max-width: 500px;
+  max-height: 300px;
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+<div class="mt-3">
+  {% if user == articulo.creador %}
+  <a class="btn btn-secondary" href="{% url 'editar_articulo' articulo.pk %}">
+    <i class="bi bi-pencil"></i> Editar artículo
+  </a>
+  {% endif %}
+  <a class="btn btn-primary" href="{% url 'ver_articulos' %}">
+    <i class="bi bi-arrow-left"></i> Volver a la lista
+  </a>
+</div>
+
+{% endblock contenido %}
+
+

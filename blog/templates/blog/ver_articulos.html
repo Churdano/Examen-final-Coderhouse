@@ -1,0 +1,37 @@
+
+{% extends "control_distr/base.html" %}
+
+{% block contenido %}
+<div class="container">
+  <h1>Lista de artículos</h1>
+
+  <ul class="list-group">
+    {% for articulo in articulos %}
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-8">
+            <h4 class="mb-1"><a href="{% url 'ver_articulo' articulo.pk %}">{{ articulo.titulo }}</a></h4>
+            <p class="mb-1">{{ articulo.subtitulo }}</p>
+            <div class="vista-previa">{{ articulo.cuerpo|slice:":100" }}</div>
+          </div>
+          <div class="col-md-4 text-end">
+            {% if user == articulo.creador %}
+            <a class="btn btn-danger btn-sm" href="{% url 'eliminar_articulo' articulo.pk %}">
+              <i class="bi bi-trash"></i> Eliminar
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+    {% empty %}
+      <li class="list-group-item">No hay artículos disponibles.</li>
+    {% endfor %}
+  </ul>
+
+  <a class="btn btn-primary mt-3" href="{% url 'crear_articulo' %}">
+    <i class="bi bi-plus"></i> Crear nuevo artículo
+  </a>
+</div>
+{% endblock contenido %}
+
+
