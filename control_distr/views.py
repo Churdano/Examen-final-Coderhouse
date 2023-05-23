@@ -258,3 +258,8 @@ def editar_vendedor(request, id):
         template_name='control_distr/formulario_vendedor.html',
         context={'form': formulario},
    )
+
+
+#sobre mi
+def sobre_mi(request):
+    return render(request, 'control_distr/sobre_mi.html')
