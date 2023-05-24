@@ -56,8 +56,8 @@ def saludar_con_html(request):
             template_name='control_distr/lista_clientes.html',
             context=contexto,
         )
-        return http_response
- """
+        return http_response """
+
  
 """ def eliminar_cliente(request, id):
    cliente = clientes.objects.get(id=id)
@@ -106,6 +106,10 @@ class ClienteCreateView(LoginRequiredMixin, CreateView):
    model = clientes
    fields = ('nombre', 'apellido', 'calle', 'calle_altura', 'telefono', 'numero_cliente')
    success_url = reverse_lazy('lista_clientes')
+   
+   def form_valid(self, form):
+        form.instance.creador = self.request.user
+        return super().form_valid(form)
    
 class ClienteDetailView(LoginRequiredMixin, DetailView):
    model = clientes

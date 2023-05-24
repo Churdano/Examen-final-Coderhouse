@@ -3,7 +3,7 @@
 
 {% block contenido %}
 <div class="container">
-  <h1>Lista de artículos</h1>
+  <h1>Últimas noticias</h1>
 
   <ul class="list-group">
     {% for articulo in articulos %}
@@ -13,6 +13,8 @@
             <h4 class="mb-1"><a href="{% url 'ver_articulo' articulo.pk %}">{{ articulo.titulo }}</a></h4>
             <p class="mb-1">{{ articulo.subtitulo }}</p>
             <div class="vista-previa">{{ articulo.cuerpo|slice:":100" }}</div>
+            <p>Creado por: {{ articulo.creador.username }}</p> <!-- Agregar esta línea para mostrar el nombre del creador -->
+            <p>Fecha de creación: {{ articulo.fecha }}</p> <!-- Agregar esta línea para mostrar la fecha de creación -->
           </div>
           <div class="col-md-4 text-end">
             {% if user == articulo.creador %}
@@ -33,5 +35,6 @@
   </a>
 </div>
 {% endblock contenido %}
+
 
 

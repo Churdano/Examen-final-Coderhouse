@@ -5,8 +5,9 @@
     <div>
         <ul>  
             <h1>Bienvenido a distribuidora LG!  {{user.first_name}}</h1>
-            <img src="{{ user.avatar.imagen.url }}" />   
+            <img src="{{ user.avatar.imagen.url }}" style="max-width: 200px; max-height: 200px;" />   
         </ul>  
     </div>
 </section>
 {% endblock contenido %}
+
