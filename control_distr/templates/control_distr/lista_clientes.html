@@ -3,10 +3,9 @@
 {% block contenido %}
 <section>
  <div>
+  <a href="{% url 'crear_cliente' %}">Crear Cliente</a>
    <h1>Lista de clientes</h1>
-   <a href="{% url 'crear_cliente' %}">Crear Cliente</a>
-   <br>
-
+    <br>
    <table class="table">
      <tbody>
        <tr>
@@ -14,8 +13,8 @@
          <th>Nombre</th>
          <th>Apellido</th>
          <th>Numero de Cliente</th>
-         <td></td>
-         <td></td>
+         <td>Ver</td>
+         <td>Editar</td>
        </tr>
        {% for cliente in object_list %}
        <tr>
@@ -24,15 +23,23 @@
          <td>{{ cliente.apellido }}</td>
          <td>{{ cliente.numero_cliente }}</td>
          <td>
-           <a href="{% url 'ver_cliente' cliente.id %}">Ver</a>
+           <a href="{% url 'ver_cliente' cliente.id %}">
+            <i class="bi bi-eye"></i>
+           </a>
          </td>
          <td>
-           <a href="{% url 'editar_cliente' cliente.id %}">Editar</a>
+          {% if user == cliente.creador %}
+           <a href="{% url 'editar_cliente' cliente.id %}">
+            <i class="bi bi-pencil"></i>
+           </a>
+          {% endif %}
          </td>
          <td>
+          {% if user == cliente.creador %}
            <a href="{% url 'eliminar_cliente' cliente.id %}">
              <i class="bi bi-trash"></i>
            </a>
+          {% endif %}
          </td>
        </tr>
        {% endfor %}

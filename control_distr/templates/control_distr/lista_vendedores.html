@@ -20,7 +20,7 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th></th>
+            <th>Editar</th>
             <th></th>
           </tr>
           {% for vendedor in vendedores %}
@@ -29,7 +29,11 @@
             <td>{{ vendedor.nombre }}</td>
             <td>{{ vendedor.apellido }}</td>
             <td>
-              <a href="{% url 'editar_vendedor' vendedor.id %}">Editar</a>
+              {% if user == vendedor.creador %}
+              <a href="{% url 'editar_vendedor' vendedor.id %}">
+                <i class="bi bi-pencil"></i>
+              </a>
+              {% endif %}
             </td>
             <td>
               {% if user == vendedor.creador %}

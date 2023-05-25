@@ -17,7 +17,7 @@ Including another URLconf
 from django.urls import path
 from control_distr.views import buscar_producto, eliminar_producto, editar_producto
 from control_distr.views import listar_productos, listar_vendedores, eliminar_vendedor, editar_vendedor
-from control_distr.views import crear_producto, buscar_vendedor, crear_vendedor
+from control_distr.views import crear_producto, buscar_vendedor, crear_vendedor, sobre_mi
 from control_distr.views import ClienteCreateView, ClienteDeleteView, ClienteDetailView, ClienteListView, ClienteUpdateView
 
 
@@ -47,6 +47,9 @@ urlpatterns = [
     path('clientes/<int:pk>/', ClienteDetailView.as_view(), name="ver_cliente"),
     path('crear-cliente/', ClienteCreateView.as_view(), name="crear_cliente"),
     path('editar-cliente/<int:pk>/', ClienteUpdateView.as_view(), name="editar_cliente"),
-    path('eliminar-cliente/<int:pk>/', ClienteDeleteView.as_view(), name="eliminar_cliente")
+    path('eliminar-cliente/<int:pk>/', ClienteDeleteView.as_view(), name="eliminar_cliente"),
+    
+    #yo
+    path('sobre-mi/', sobre_mi, name='sobre_mi'),
 
 ]

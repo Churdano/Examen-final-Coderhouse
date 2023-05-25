@@ -13,12 +13,8 @@ pip install -r requirements.txt
 ```
 
 ## Instrucciones para entrar al panel aministrativo de Django
-+ En consola, crear un superuser:
-```
-python manage.py createsuperuser
-```
+
 + Acceder con user y password via:
 ```
-127.0.0.1:8000/admin
+127.0.0.1:8000/admin 
 ```
-### Es una pagina para una distribuidora de ferreterias. Contiene un panel de inicio con un saludo, un panel para ver los productos, buscar, o crear. Un panel para ingresar clientes nuevos, o buscarlos en la BD. Y tambien un panel para vendedores, en donde se podran ingresar nuevos vendedores o buscarlos por apellido.

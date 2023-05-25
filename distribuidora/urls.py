@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('lista/', include("control_distr.urls")),
     path('perfiles/', include("perfiles.urls")),
+    path('blog/', include("blog.urls")),
     
 ]
 
