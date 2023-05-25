@@ -4,6 +4,7 @@ from .models import Articulo
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 class ArticleListView(ListView):
     model = Articulo
     template_name = 'ver_articulos.html'
