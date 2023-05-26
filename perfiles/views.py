@@ -65,21 +65,33 @@ class MiPerfilUpdateView(LoginRequiredMixin, UpdateView):
        return self.request.user
  
    
+from perfiles.models import Avatar
+
+from perfiles.models import Avatar
+
 def agregar_avatar(request):
-  if request.method == "POST":
-      formulario = AvatarFormulario(request.POST, request.FILES) # Aquí me llega toda la info del formulario html
+    if request.method == "POST":
+        formulario = AvatarFormulario(request.POST, request.FILES)
 
-      if formulario.is_valid():
-          avatar = formulario.save()
-          avatar.user = request.user
-          avatar.save()
-          url_exitosa = reverse('saludo')
-          return redirect(url_exitosa)
-  else:  # GET
-      formulario = AvatarFormulario()
-  return render(
-      request=request,
-      template_name="perfiles/formulario_avatar.html",
-      context={'form': formulario},
-  )
+        if formulario.is_valid():
+            avatar_data = formulario.cleaned_data['imagen']
+            user_avatar = Avatar.objects.filter(user=request.user).first()
 
+            if user_avatar:
+                # Si el usuario ya tiene un avatar, actualiza el registro existente
+                user_avatar.imagen = avatar_data
+                user_avatar.save()
+            else:
+                # Si el usuario no tiene un avatar, crea un nuevo registro
+                avatar = Avatar.objects.create(user=request.user, imagen=avatar_data)
+
+            url_exitosa = reverse('saludo')
+            return redirect(url_exitosa)
+    else:  # GET
+        formulario = AvatarFormulario()
+
+    return render(
+        request=request,
+        template_name="perfiles/formulario_avatar.html",
+        context={'form': formulario},
+    )

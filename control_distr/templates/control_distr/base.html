@@ -33,23 +33,24 @@
                 {% if user.is_authenticated %}
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div style="display: inline-flex;">
-                            <span>{{ user.username }}</span>
-                        </div>
+                      <div style="display: inline-flex;">
+                        <span class="text-light"> Hola <strong>{{ user.username }}</strong>!</span>
+                        <img src="{{ user.avatar.imagen.url }}" style="max-width: 25px; max-height: 25px; border-radius: 50%;" />   
+                      </div>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li>
-                            <a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar mis datos</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'agregar_avatar' %}">Agregar Avatar</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'logout' %}"><strong>Cerrar Sesión</strong></a>
-                        </li>
+                      <li>
+                        <a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar mis datos</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="{% url 'agregar_avatar' %}">Agregar Avatar</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="{% url 'logout' %}"><strong>Cerrar Sesión</strong></a>
+                      </li>
                     </ul>
-                    </div>
-                </div>
+                  </div>
+                  
          
                 {% else %}
                 <a class="btn btn-primary" href="{% url 'login' %}">Inicio sesión</a>

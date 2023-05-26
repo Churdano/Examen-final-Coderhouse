@@ -2,37 +2,65 @@
 {% load static %}
 
 {% block contenido %}
-<body>
-    <img src="{% static 'imagenes\foto_mia.jpg' %}">
-    <h1>Un poco sobre mi...</h1>
-    <p>¡Hola!
+<style>
+    .container {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+    }
 
-        Soy Gonzalo Martin Lapettina.
-        <br>
-         Soy una persona alegre y apasionada por el aprendizaje y la superación personal.
-        <br>
-         Desde muy joven, me fascinó el mundo de la tecnología y comencé mi camino estudiando reparación de PC y posteriormente reparación de celulares.
-         <br>
-         Sin embargo, siempre sentí una atracción especial hacia la programación, aunque no tuve la oportunidad de estudiarla en su momento debido a las limitaciones de recursos.
-        <br>
-        Pero la vida siempre tiene sorpresas gratas reservadas para nosotros, y finalmente tuve la oportunidad de cumplir mi sueño de convertirme en programador.
-        <br>
-        Decidí dar un gran paso y me uní a Coderhouse, donde he completado con éxito todas las clases y ahora me encuentro preparando mi examen final.
-        <br>
-        Actualmente, trabajo en una distribuidora de ferretería realizando tareas de reparto. Sin embargo, mi verdadera pasión y deseo es abrirme camino en el mundo de la programación.
-        <br>
-        Me encantaría tener la oportunidad de demostrar mi dedicación, habilidades y entusiasmo en este campo tan emocionante.
-        <br>
-        Estoy listo para enfrentar nuevos desafíos y aprender de cada experiencia que se presente en mi camino.
-        <br>
-        Mi objetivo es crecer profesionalmente como programador y contribuir con soluciones innovadoras a través del código.
-        <br>
-        Estoy dispuesto a esforzarme al máximo para lograr mis metas y superar cualquier obstáculo que se presente.
-        <br>
-        Agradezco profundamente su tiempo y consideración.
-        <br>
-        ¡Gracias y un cordial saludo!
-        
-        Gonza</p>
-</body>
+    .foto-mia {
+        border: 5px solid #fff;
+    }
+
+    h1 {
+        color: #3366cc;
+        font-size: 32px;
+    }
+
+    p {
+        color: #333;
+        font-size: 18px;
+    }
+
+    .list-inline-item a {
+        color: #3366cc;
+    }
+
+    .list-inline-item a:hover {
+        color: #23527c;
+    }
+</style>
+
+<div class="container">
+    <div class="text-center">
+        <img src="{% static 'imagenes/foto_mia.jpg' %}" class="img-fluid rounded-circle foto-mia" alt="Mi foto">
+        <h1 class="mt-4">Un poco sobre mí...</h1>
+        <p class="mt-4 text-justify">¡Hola!<br>
+            Soy Gonzalo Martin Lapettina.<br>
+            Soy una persona alegre y apasionada por el aprendizaje y la superación personal.<br>
+            Desde muy joven, me fascinó el mundo de la tecnología y comencé mi camino estudiando reparación de PC y posteriormente reparación de celulares.<br>
+            Sin embargo, siempre sentí una atracción especial hacia la programación, aunque no tuve la oportunidad de estudiarla en su momento debido a las limitaciones de recursos.<br>
+            Pero la vida siempre tiene sorpresas gratas reservadas para nosotros, y finalmente tuve la oportunidad de cumplir mi sueño de convertirme en programador.<br>
+            Decidí dar un gran paso y me uní a Coderhouse, donde he completado con éxito todas las clases y ahora me encuentro preparando mi examen final.<br>
+            Actualmente, trabajo en una distribuidora de ferretería realizando tareas de reparto. Sin embargo, mi verdadera pasión y deseo es abrirme camino en el mundo de la programación.<br>
+            Me encantaría tener la oportunidad de demostrar mi dedicación, habilidades y entusiasmo en este campo tan emocionante.<br>
+            Estoy listo para enfrentar nuevos desafíos y aprender de cada experiencia que se presente en mi camino.<br>
+            Mi objetivo es crecer profesionalmente como programador y contribuir con soluciones innovadoras a través del código.<br>
+            Estoy dispuesto a esforzarme al máximo para lograr mis metas y superar cualquier obstáculo que se presente.<br>
+            Agradezco profundamente su tiempo y consideración.<br>
+            ¡Gracias y un cordial saludo!<br>
+            Gonza
+        </p>
+        <ul class="list-inline mt-4">
+            <li class="list-inline-item me-4">
+                <a href="https://www.linkedin.com/in/gonzalo-lapettina-352236269/"><i class="bi bi-linkedin fs-3"></i></a>
+            </li>
+            <li class="list-inline-item me-4">
+                <a href="https://github.com/Churdano?tab=repositories"><i class="bi bi-github fs-3"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
 {% endblock contenido %}
+

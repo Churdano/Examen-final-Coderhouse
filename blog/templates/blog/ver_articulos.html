@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-md-8">
             <h4 class="mb-1"><a href="{% url 'ver_articulo' articulo.pk %}">{{ articulo.titulo }}</a></h4>
-            <p class="mb-1">{{ articulo.subtitulo }}</p>
+            <p class="mb-1"><strong>{{ articulo.subtitulo }}</strong></p>
             <div class="vista-previa">{{ articulo.cuerpo|slice:":100" }}</div>
             <p>Creado por: {{ articulo.creador.username }}</p> <!-- Agregar esta línea para mostrar el nombre del creador -->
             <p>Fecha de creación: {{ articulo.fecha }}</p> <!-- Agregar esta línea para mostrar la fecha de creación -->
