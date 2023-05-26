@@ -18,3 +18,7 @@ pip install -r requirements.txt
 ```
 127.0.0.1:8000/admin 
 ```
+
+## Video demostrativo de la pagina
+
+https://youtu.be/Nwaw7RBoey8
